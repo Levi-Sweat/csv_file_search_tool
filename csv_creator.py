@@ -1,3 +1,6 @@
+# Output files: new_cluster contains every instance of the specified species/cluster in the files specified by the user
+# The output file of the name you specifiy contains every file that includes calls from the specified species/cluster
+
 import csv
 
 class Data:
@@ -82,36 +85,37 @@ with open('new_cluster.csv', 'w', newline='') as new_file:
     csv_writer = csv.writer(new_file)
     csv_writer.writerow(header)
 
-    with open('cluster.csv', 'r') as csv_file:
-        csv_reader = csv.reader(csv_file)
+    for file in files:
+        with open(file, 'r') as csv_file: ################################# CHANGE THIS TO THE FIRST FILE IN THE LIST
+            csv_reader = csv.reader(csv_file)
 
-        for line in csv_reader:
-            if line[15] == species_input:
-                filename = line[2]
+            for line in csv_reader:
+                if line[15] == species_input:
+                    filename = line[2]
 
-                row_array = filename.split("_")
-                
-                row_array[2] = row_array[2][:-4]    # remove the .wav extension from the times of the detections
-
-                row_array.insert(0, filename)       # insert filename to the beginning of list
-
-                row_array.append('')
-                row_array.append('')
-                row_array.append(line[15])
-                row_array.append('')
-                row_array.append(line[4])
-                row_array.append('')
-                row_array.append('')
-                row_array.append('')
-                row_array.append('')
-                row_array.append('')
+                    row_array = filename.split("_")
                     
-                csv_writer.writerow(row_array)
+                    row_array[2] = row_array[2][:-4]    # remove the .wav extension from the times of the detections
+
+                    row_array.insert(0, filename)       # insert filename to the beginning of list
+
+                    row_array.append('')
+                    row_array.append('')
+                    row_array.append(line[15])
+                    row_array.append('')
+                    row_array.append(line[4])
+                    row_array.append('')
+                    row_array.append('')
+                    row_array.append('')
+                    row_array.append('')
+                    row_array.append('')
+                        
+                    csv_writer.writerow(row_array)
 
 
 file_name_objects = []
 
-with open('final_cluster.csv', 'w', newline='') as final_csv:
+with open(new_file_name, 'w', newline='') as final_csv:
     csv_writer = csv.writer(final_csv)
     csv_writer.writerow(final_header)
 
