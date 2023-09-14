@@ -57,6 +57,17 @@ class Data:
 
         return new_row_array
 
+new_file_name = input("Enter the name of the file you would like to create (should end in .csv): ") #User input for name of new file
+
+number_of_files = int(input("Enter the number of files would you like to search: ")) #number of files to search
+
+files = [] #list of files
+
+i = 0
+while i < number_of_files: #enter file names while appending to files array
+    files.append(input("Enter the name of file " + str(i + 1) + ": "))
+    i += 1
+
 
 species_input = input("Which species/cluster are you searching for?\n") #Where program starts, user input for species/cluster name
 
